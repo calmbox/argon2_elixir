@@ -32,7 +32,7 @@ SRC = $(SRC_DIR)/argon2.c $(SRC_DIR)/core.c $(SRC_DIR)/blake2/blake2b.c\
       c_src/argon2_nif.c
 
 CFLAGS ?= -g -O3
-CFLAGS += -pthread -Wall
+CFLAGS += -pthread -Wall -DARGON2_NO_THREADS
 CFLAGS += -I"$(ERTS_INCLUDE_DIR)"
 CFLAGS += -I$(SRC_INC) -I$(SRC_DIR) -Ic_src
 

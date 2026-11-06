@@ -170,7 +170,7 @@ static const char *from_base64(void *dst, size_t *dst_len, const char *src) {
     for (;;) {
         unsigned d;
 
-        d = b64_char_to_byte(*src);
+        d = b64_char_to_byte((unsigned char)*src);
         if (d == 0xFF) {
             break;
         }

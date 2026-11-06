@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.1.3-calmbox.1
+
+* calmbox fork of v4.1.3; see the README for the full list of changes
+* Bug fixes
+  * the NIF no longer reads an uninitialized output buffer
+  * out-of-range `m_cost`, Argon2 type, salt, hash and encoded buffer lengths are rejected
+  * stored hashes of 1024 characters or more are rejected instead of truncated
+  * non-ASCII bytes in a stored hash are rejected instead of decoded as `/`
+* Changes
+  * the reference implementation is vendored and built with `ARGON2_NO_THREADS`
+
 ## v4.1.1 (2025-02-04)
 
 * Bug fixes

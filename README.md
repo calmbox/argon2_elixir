@@ -10,6 +10,25 @@
 
 Argon2 password hashing library for Elixir.
 
+## calmbox fork
+
+This is calmbox's fork of argon2_elixir 4.1.3. It is not published to Hex;
+depend on it from GitHub by tag. Changes from upstream:
+
+* Vendors the Argon2 reference implementation (P-H-C/phc-winner-argon2
+  `f57e61e`) instead of using a git submodule.
+* Builds the reference code with `ARGON2_NO_THREADS`. A `parallelism` above 1
+  still produces standard hashes, but its lanes are computed on one thread
+  instead of starting OS threads inside the NIF.
+* The NIF no longer reads its unused output buffer uninitialized, and it rejects
+  out-of-range arguments: `m_cost` outside 3..22, unknown Argon2 types, salts
+  longer than 64 bytes, hashes longer than 512 bytes, encoded buffers larger than
+  1024 bytes and stored hashes of 1024 characters or more.
+* The base64 decoder rejects non-ASCII bytes in a stored hash. Platforms with a
+  signed `char`, such as x86-64, previously decoded them as `/`.
+* `Argon2.Base.hash_password/3` raises a descriptive `ArgumentError` for an
+  out-of-range `m_cost`, `argon2_type`, `hashlen` or salt length.
+
 [Argon2](https://github.com/P-H-C/phc-winner-argon2) is the official winner
 of the [Password Hashing Competition](https://password-hashing.net/),
 a several year project to identify a successor to Bcrypt / Pbkdf2 / Scrypt

@@ -35,7 +35,7 @@
 SRC_INC = argon2\include
 SRC_DIR = argon2\src
 NMAKE = nmake /$(MAKEFLAGS)
-CFLAGS = /O2 /EHsc /I"$(SRC_INC)" /I"$(SRC_DIR)"
+CFLAGS = /O2 /EHsc /DARGON2_NO_THREADS /I"$(SRC_INC)" /I"$(SRC_DIR)"
 
 SRC = $(SRC_DIR)\argon2.c $(SRC_DIR)\core.c $(SRC_DIR)\blake2\blake2b.c\
       $(SRC_DIR)\thread.c $(SRC_DIR)\encoding.c $(SRC_DIR)\ref.c c_src\argon2_nif.c
